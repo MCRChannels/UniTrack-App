@@ -21,6 +21,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+// หน้าจอสำหรับสร้างตารางเรียนแต่ละวิชา
 const CreateScreen = ({ navigation, route }) => {
   const { events, dispatch } = useContext(EventContext);
   const { currentUser } = useContext(UserContext);
@@ -38,6 +39,7 @@ const CreateScreen = ({ navigation, route }) => {
   const [showDayPicker, setShowDayPicker] = useState(false);
   const [tempTime, setTempTime] = useState(new Date());
 
+  // ฟังก์ชันเปลี่ยนค่าเวลาตามสไตล์ของแต่ละระบบ (OS)
   const onTimeChange = (event, selectedDate) => {
     if (Platform.OS === 'android') {
       setShowPicker({ ...showPicker, visible: false });
@@ -77,6 +79,7 @@ const CreateScreen = ({ navigation, route }) => {
     setShowPicker({ field, visible: true });
   };
 
+  // ฟังก์ชันไว้บันทึกและเซฟตารางเรียนใหม่ลง Firebase
   const handleCreate = async () => {
     if (!form.title || !form.startTime || !form.endTime) {
       Alert.alert("แจ้งเตือน", "กรุณากรอกชื่อวิชาและเวลาให้ครบถ้วน");

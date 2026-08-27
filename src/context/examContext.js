@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig";
 
 export const ExamContext = createContext();
 
+// ฟังก์ชัน Reducer สำหรับจัดการ State ของการสอบ (Exam)
 const examReducer = (state, action) => {
   switch (action.type) {
     case "SET_EXAMS":
@@ -52,6 +53,7 @@ const examReducer = (state, action) => {
   }
 };
 
+// คอมโพเนนต์ Provider แจกจ่ายข้อมูลการสอบไปให้ส่วนอื่นๆ ใช้งาน
 export const ExamProvider = ({ children }) => {
   const [exams, dispatch] = useReducer(examReducer, []);
 

@@ -8,6 +8,7 @@ import { TaskContext } from "./TaskContext";
 
 export const UserContext = createContext();
 
+// ฟังก์ชัน Reducer สำหรับจัดการข้อมูลผู้ใช้และการเข้าสู่ระบบ
 const userReducer = (state, action) => {
     switch (action.type) {
         case 'SET_CURRENT_USER':
@@ -62,6 +63,7 @@ const initialState = {
     currentUser: null,
 };
 
+// คอมโพเนนต์ Provider ดูแลผู้ใช้งานและช่วยเชื่อมต่อการอัปเดตข้อมูลแบบสด (Real-time)
 export const UserProvider = ({ children }) => {
     const [state, dispatch] = useReducer(userReducer, initialState);
 

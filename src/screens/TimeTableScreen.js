@@ -22,6 +22,7 @@ const HOUR_HEIGHT = 80;
 const START_HOUR = 7;
 const END_HOUR = 21;
 
+// หน้าจอแสดงตารางเรียนแบบจำลองตารางเวลา (Timeline)
 const TimeTableScreen = ({ navigation }) => {
     const { events, dispatch: eventDispatch } = useContext(EventContext);
     const { dispatch: examDispatch } = useContext(ExamContext);
@@ -33,12 +34,14 @@ const TimeTableScreen = ({ navigation }) => {
     const [isImportMode, setIsImportMode] = useState(false);
     const [shareCodeInput, setShareCodeInput] = useState('');
 
+    // ฟังก์ชันสร้างโค้ด (ข้อความ) สำหรับแชร์ตารางเรียนให้เพื่อน
     const generateShareCode = () => {
         if (events.length === 0) return 'ยังไม่มีวิชาเรียนในตาราง';
         const minifiedEvents = events.map(e => ({ t: e.title, d: e.day, s: e.startTime, e: e.endTime, r: e.roomNumber || '' }));
         return JSON.stringify(minifiedEvents);
     };
 
+    // ฟังก์ชันนำเข้าตารางเรียนจากโค้ดที่คัดลอกมา
     const handleImport = async () => {
         if (!shareCodeInput.trim()) return;
         try {

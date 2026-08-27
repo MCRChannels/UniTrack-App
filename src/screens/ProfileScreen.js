@@ -12,6 +12,7 @@ import { ExamContext } from "../context/examContext";
 import { TaskContext } from "../context/TaskContext";
 import { uploadImageToCloudinary } from "../cloudinaryConfig";
 
+// หน้าจอโปรไฟล์ผู้ใช้ สำหรับแสดงและแก้ไขข้อมูลส่วนตัว
 const ProfileScreen = ({ route, navigation }) => {
     const { currentUser, dispatch: userDispatch } = useContext(UserContext);
     const { dispatch: eventDispatch } = useContext(EventContext);
@@ -36,6 +37,7 @@ const ProfileScreen = ({ route, navigation }) => {
         setEditUser({ ...editUser, [key]: value });
     };
 
+    // ฟังก์ชันบันทึกการแก้ไขข้อมูลโปรไฟล์
     const handleSave = async () => {
         const uid = editUser.id || user.id;
         if (!uid) {
@@ -92,6 +94,7 @@ const ProfileScreen = ({ route, navigation }) => {
         ]);
     };
 
+    // ฟังก์ชันออกจากระบบ
     const handleLogout = async () => {
         try {
             await signOut(auth);
@@ -143,6 +146,7 @@ const ProfileScreen = ({ route, navigation }) => {
         );
     };
 
+    // ฟังก์ชันเลือกรูปโปรไฟล์จากคลังภาพมือถือ
     const PickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 

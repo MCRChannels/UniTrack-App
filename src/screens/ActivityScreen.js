@@ -10,6 +10,7 @@ import { ExamContext } from "../context/examContext";
 import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+// เป็นหน้าจอแสดงรายการกิจกรรมและแผนการเรียน (Activity & Planner)
 const ActivityScreen = ({ route }) => {
   const { currentUser } = useContext(UserContext);
   const { events } = useContext(EventContext);
@@ -112,7 +113,7 @@ const ActivityScreen = ({ route }) => {
     setShowPicker({ field: null, visible: false });
   };
 
-  // Helper: check if activity time overlaps with any class, exam, or existing activity on the same day
+  // ฟังก์ชันไว้เช็กว่าเวลาที่เลือกชนกับวิชาเรียน ทวนสอบ หรือกิจกรรมอื่นที่สร้างไว้ไหม
   const findConflict = (activityDate) => {
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dayName = dayNames[activityDate.getDay()];
@@ -191,6 +192,7 @@ const ActivityScreen = ({ route }) => {
     }
   };
 
+  // ฟังก์ชันสำหรับตรวจความถูกต้องและเพิ่มกิจกรรมใหม่
   const handleAddItem = async () => {
     if (!inputText.trim()) {
       Alert.alert('แจ้งเตือน', 'กรุณากรอกชื่อรายการก่อนครับ');
@@ -264,6 +266,7 @@ const ActivityScreen = ({ route }) => {
     await saveActivity(newItem);
   };
 
+  // ฟังก์ชันไว้ลบกิจกรรมตามไอดี
   const deleteItem = async (id) => {
     // Delete from Firestore
     if (currentUser?.id) {
@@ -276,6 +279,7 @@ const ActivityScreen = ({ route }) => {
     setItems(items.filter(item => item.id !== id));
   };
 
+  // ฟังก์ชันไว้สลับสถานะว่าทำกิจกรรมเสร็จหรือยัง
   const toggleItem = async (id) => {
     const item = items.find(i => i.id === id);
     if (item && currentUser?.id && item.firestoreId) {

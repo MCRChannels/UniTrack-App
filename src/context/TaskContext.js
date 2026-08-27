@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig";
 
 export const TaskContext = createContext();
 
+// ฟังก์ชัน Reducer ไว้จัดการ State ของงาน (Task) เช่น เพิ่ม หรือลบงาน
 const taskReducer = (state, action) => {
   switch (action.type) {
     case "SET_TASKS":
@@ -66,6 +67,7 @@ const taskReducer = (state, action) => {
   }
 };
 
+// ฟังก์ชัน Provider ให้ข้อมูล TaskContext กระจายไปยังส่วนต่างๆ ของแอป
 export const TaskProvider = ({ children }) => {
   const [tasks, dispatch] = useReducer(taskReducer, []);
 

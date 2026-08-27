@@ -3,11 +3,7 @@ export const CLOUDINARY_CLOUD_NAME = "dgxatutln";
 export const CLOUDINARY_UPLOAD_PRESET = "Baboss";
 export const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
-/**
- * Upload an image to Cloudinary
- * @param {string} imageUri - Local URI ของรูปภาพ
- * @returns {Promise<string>} - URL ของรูปบน Cloudinary
- */
+// ฟังก์ชันสำหรับอัปโหลดรูปภาพโปรไฟล์ไปยัง Cloudinary
 export const uploadImageToCloudinary = async (imageUri) => {
     const formData = new FormData();
 

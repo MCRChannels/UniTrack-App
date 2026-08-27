@@ -9,6 +9,7 @@ import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { db, auth } from "../firebaseConfig";
 
+// หน้าจอหลัก (Dashboard) แสดงข้อมูลสรุปตารางเรียน สอบ และกิจกรรมต่างๆ
 const DashBoardScreen = ({ navigation }) => {
     const { events } = useContext(EventContext);
     const { exams } = useContext(ExamContext);
@@ -60,6 +61,7 @@ const DashBoardScreen = ({ navigation }) => {
     const getStartOfNextMonth = (date = new Date()) => new Date(date.getFullYear(), date.getMonth() + 1, 1);
     const getEndOfNextMonth = (date = new Date()) => new Date(date.getFullYear(), date.getMonth() + 2, 0, 23, 59, 59, 999);
 
+    // ฟังก์ชันช่วยแปลงรูปแบบข้อมูลวันที่ (Date) ให้เอาไปใช้งานได้ง่ายขึ้น
     const parseCustomDate = (dateString) => {
         if (!dateString) return null; // FIX: If no date provided, don't fall back to "today"
 
@@ -172,6 +174,7 @@ const DashBoardScreen = ({ navigation }) => {
     }).sort((a, b) => a.dateObj - b.dateObj);
 
     // --- Next Class Logic ---
+    // ฟังก์ชันคำนวณหาวิชาเรียนถัดไป ที่ต้องเรียนในวันนี้
     const getNextClassInfo = () => {
         if (!events || events.length === 0) return { status: 'ยังไม่มีวิชาเรียน', class: null, active: false, empty: true };
         const dayMap = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -224,6 +227,7 @@ const DashBoardScreen = ({ navigation }) => {
     const nextClassInfo = getNextClassInfo();
 
     // --- Render Helpers ---
+    // ฟังก์ชันสร้าง UI การ์ดแสดงวิชาเรียนถัดไป
     const renderNextClassCard = () => {
         if (!nextClassInfo) return null;
         const { status, class: item, active, tomorrowClass, empty } = nextClassInfo;

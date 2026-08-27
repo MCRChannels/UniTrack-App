@@ -20,6 +20,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+// หน้าจอเอาไว้สร้างตารางสอบอันใหม่
 const CreateExamScreen = ({ navigation }) => {
   const { dispatch } = useContext(ExamContext);
   const { currentUser } = useContext(UserContext);
@@ -109,6 +110,7 @@ const CreateExamScreen = ({ navigation }) => {
     setShowTimePicker({ field: null, visible: false });
   };
 
+  // ฟังก์ชันไว้กดตกลงแล้วเซฟข้อมูลการสอบไปยัง Firebase
   const handleCreate = async () => {
     if (!form.title || !form.startTime || !form.endTime || !form.date) {
       Alert.alert("แจ้งเตือน", "กรุณากรอกข้อมูลให้ครบถ้วน");

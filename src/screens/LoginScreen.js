@@ -22,6 +22,7 @@ import { EventContext } from "../context/eventContext";
 import { ExamContext } from "../context/examContext";
 import { TaskContext } from "../context/TaskContext";
 
+// หน้าจอสำหรับล็อกอินเข้าสู่ระบบ
 const LoginScreen = ({ navigation }) => {
     const { dispatch: userDispatch } = useContext(UserContext);
     const { dispatch: eventDispatch } = useContext(EventContext);
@@ -34,6 +35,7 @@ const LoginScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
 
     // (Removed getDocs function as App.js now handles real-time subscriptions)
+    // ฟังก์ชันตรวจสอบอีเมลรหัสผ่าน และล็อกอินผ่าน Firebase
     const handleLogin = async () => {
         if (!email || !password) {
             Alert.alert('แจ้งเตือน', 'กรุณากรอก Email และ Password ให้ครบครับ');

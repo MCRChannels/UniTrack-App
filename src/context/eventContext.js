@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig";
 
 export const EventContext = createContext();
 
+// ฟังก์ชัน Reducer ไว้สำหรับจัดการข้อมูลกิจกรรม (Event)
 const eventReducer = (state, action) => {
     switch (action.type) {
         case "SET_EVENTS":
@@ -50,6 +51,7 @@ const eventReducer = (state, action) => {
     }
 };
 
+// คอมโพเนนต์ Provider สำหรับกระจายข้อมูล Event ทั่วทั้งแอป
 export const EventProvider = ({ children }) => {
     const [events, dispatch] = useReducer(eventReducer, []);
 

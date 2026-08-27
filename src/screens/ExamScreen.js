@@ -16,6 +16,7 @@ const CARD_COLORS = [
     '#A23B72', '#2E86AB', '#006664', '#F18F01', '#C73E1D', '#3B1F2B', '#44BBA4'
 ];
 
+// หน้าจอแสดงตารางสอบทั้งหมดที่บันทึกไว้
 const ExamScreen = ({ navigation }) => {
     const { exams, dispatch: examDispatch } = useContext(ExamContext);
     const { events, dispatch: eventDispatch } = useContext(EventContext);
@@ -33,6 +34,7 @@ const ExamScreen = ({ navigation }) => {
         return (h1 * 60 + m1) - (h2 * 60 + m2);
     });
 
+    // ฟังก์ชันกดลบตารางสอบ (มีให้เลือกลบแค่วิชาสอบ หรือลบวิชาเรียนคู่กันด้วย)
     const handleDelete = (item) => {
         const hasMatchingClass = events.some(e => e.title?.toLowerCase() === item.title?.toLowerCase());
 

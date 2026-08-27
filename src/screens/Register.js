@@ -21,6 +21,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 
+// หน้าจอสำหรับสมัครสมาชิกใหม่
 const Register = ({ navigation }) => {
     const { dispatch } = useContext(UserContext);
 
@@ -41,6 +42,7 @@ const Register = ({ navigation }) => {
     const [showDeptPicker, setShowDeptPicker] = useState(false);
     const [showYearPicker, setShowYearPicker] = useState(false);
 
+    // ฟังก์ชันตรวจสอบข้อมูลและสมัครสมาชิกบัญชีใหม่ลง Firebase
     const handleRegister = async () => {
         const { fullname, email, username, password, confirmPassword } = form;
 

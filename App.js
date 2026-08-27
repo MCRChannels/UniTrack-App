@@ -23,7 +23,7 @@ import { ExamProvider, ExamContext } from "./src/context/examContext";
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
-// A helper component to pass context dispatchers down to UserProvider for Real-Time global sync
+// เป็น helper component ที่คอยซิงค์ dispatch ให้กับ userContext
 const GlobalSyncLogic = () => {
   const { setGlobalDispatchers } = React.useContext(UserContext);
   const { dispatch: eventDispatch } = React.useContext(EventContext);
@@ -39,6 +39,7 @@ const GlobalSyncLogic = () => {
   return null;
 };
 
+// เป็น Stack Navigator ของส่วนตารางเรียน
 const TimeTableStack = () => {
   return (
     <Stack.Navigator>
@@ -66,6 +67,7 @@ const TimeTableStack = () => {
   )
 }
 
+// เป็น Tab Navigator สำหรับจัดการแถบเมนูด้านล่าง
 const AllTabsScreen = () => {
   return (
     <Tab.Navigator
@@ -121,6 +123,7 @@ const AllTabsScreen = () => {
   )
 }
 
+// เป็นฟังก์ชันหลักของแอปที่รวม Provider และ Stack Navigator เข้าไว้ด้วยกัน
 export default function App() {
   return (
     <SafeAreaProvider>

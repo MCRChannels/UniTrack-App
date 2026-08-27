@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, TextInput } from 'react-native'
 
+// เป็น Component ช่องกรอกข้อความที่สามารถปรับแต่งค่าได้
 const TextInputJS = ({ holder, value, onChange }) => {
     return (
         <View>
